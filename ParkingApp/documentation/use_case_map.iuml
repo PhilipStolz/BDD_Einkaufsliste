@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+:Fahrer: as driver
+:Parkplatz-\nbesitzer: as owner
+:Parkhaussystem: as parkingsystem <<external system>>
+:Navigationssystem: as navigationsystem <<external system>>
+:Bezahlungssystem: as paymentsystem <<external system>>
+
+rectangle "Parking-App" {
+    "UC01\nParkplatz finden" as (uc01)
+    "UC02\nParkplatz nutzen" as (uc02)
+    "UC03\nParkplatz verwalten" as (uc03)    
+    "UC04\nParkplatz bezahlen" as (uc04)
+}
+
+driver -- (uc01)
+driver -- (uc02)
+driver -- (uc04)
+owner -- (uc03)
+(uc01) -- parkingsystem
+(uc01) -- navigationsystem
+(uc03) -- parkingsystem 
+(uc04) -- paymentsystem
+@enduml

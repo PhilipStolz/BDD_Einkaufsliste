@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+:Fahrer: as driver
+
+
+rectangle "Parking-App" {
+    "UC02\nParkplatz nutzen" as (uc02)
+}
+
+driver -- (uc02)
+
+note top of (uc02)
+<b>Bulleted Outline:</b>
+** Parkplatz besetzen
+** Parkplatz freigeben
+end note
+
+@enduml

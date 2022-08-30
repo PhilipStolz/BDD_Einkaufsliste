@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+
+:Parkplatz-\nbesitzer: as owner
+:Parkhaussystem: as parkingsystem <<external system>>
+
+rectangle "Parking-App" {
+
+    "UC03\nParkplatz verwalten" as (uc03)    
+
+}
+
+
+owner -- (uc03)
+
+(uc03) -- parkingsystem 
+note top of (uc03)
+<b>Bulleted Outline:</b>
+** Parkplatzinformationen anlegen
+** Parkplatzinformationen bearbeiten
+** Parkplatzinformationen löschen
+end note
+@enduml

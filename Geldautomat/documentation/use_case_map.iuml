@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+
+:Bankkunde: as kund
+:Banksystem: as banksys <<external system>>
+
+rectangle "Geldautomat" {
+    "UC01\nGeld abheben" as (uc01)
+}
+
+kund -- (uc01)
+(uc01) -- banksys 
+@enduml

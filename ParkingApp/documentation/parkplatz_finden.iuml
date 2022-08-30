@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+:Fahrer: as driver
+:Navigationssystem: as navigationsystem <<external system>>
+:Parkhaussystem: as parkingsystem <<external system>>
+
+rectangle "Parking-App" {
+    "UC01\nParkplatz finden" as (uc01)
+}
+
+driver -- (uc01)
+(uc01) -- parkingsystem
+(uc01) -- navigationsystem
+
+note top of (uc01)
+<b>Bulleted Outline:</b>
+** Suchort identifizieren
+** Parkplatz finden
+** Parkplatz auswählen
+** Navigation
+end note
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+:Actor 1: as act01
+:Actor 2: as act02
+:Actor 3: as act03 <<external system>>
+
+rectangle "System" {
+    "UC01\n1st actor's goal" as (uc01)
+    "UC02\n2nd actor's goal" as (uc02)
+}
+
+act01 -- (uc01)
+act02 -- (uc01)
+act02 -- (uc02)
+(uc01) -- act03 
+@enduml
