@@ -2,7 +2,7 @@
  * File: Controller.java
  * Creation Date: 23.12.2014
  *
- * Copyright © 2014 by HOOD GmbH – all rights reserved 
+ * Copyright 2014 by HOOD GmbH all rights reserved 
  */
 package com.hoodgroup.tictactoe.controller;
 

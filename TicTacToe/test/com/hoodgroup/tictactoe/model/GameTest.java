@@ -2,7 +2,7 @@
  * File: GameTest.java
  * Creation Date: Jan 26, 2015
  *
- * Copyright © 2015 by HOOD GmbH – all rights reserved 
+ * Copyright 2015 by HOOD GmbH – all rights reserved 
  */
 package com.hoodgroup.tictactoe.model;
 
