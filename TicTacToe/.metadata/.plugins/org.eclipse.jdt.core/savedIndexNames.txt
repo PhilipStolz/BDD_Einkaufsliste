@@ -1,1 +1,0 @@
-INDEX VERSION 1.131+C:\Users\p_stolz\Documents\Development\TicTacToe\.metadata\.plugins\org.eclipse.jdt.core
