@@ -14,6 +14,7 @@ And a turn on 0,0 is made
 And a turn on 1,2 is made
 Then "Ron" shall win the game.
 
+
 Scenario:  A straight forward game where the second player wins.
 Given a game with first player "Ron" and second player "Mike"
 When a turn on 1,1 is made
