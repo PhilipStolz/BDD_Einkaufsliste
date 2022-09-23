@@ -2,7 +2,7 @@
  * File: SimpleUserInterface.java
  * Creation Date: 07.01.2015
  *
- * Copyright 2015 by HOOD GmbH all rights reserved 
+ * Copyright © 2015 by HOOD GmbH – all rights reserved 
  */
 package com.hoodgroup.tictactoe.gui;
 

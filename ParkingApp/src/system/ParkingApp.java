@@ -24,8 +24,13 @@ public class ParkingApp implements SchnittstelleVomFahrer {
 
 	public static void main(String[] args) {
 		ParkingApp parkingApp = new ParkingApp();
-		   
 		parkingApp.setFahrer(new FahrerGUI(parkingApp));
+	}
+
+
+	@Override
+	public void tueDies(String name) {
+		fahrer.bestaetigeTueDies();
 	}
 
 }
