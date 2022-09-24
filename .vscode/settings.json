@@ -1,3 +1,5 @@
 {
-    "files.encoding": "iso88591"
+    "files.encoding": "windows1250",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.encoding": "setDefault"
 }

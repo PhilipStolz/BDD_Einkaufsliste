@@ -1,0 +1,44 @@
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "encoding": "windows-1252",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Geldautomat",
+            "request": "launch",
+            "mainClass": "system.Geldautomat",
+            "projectName": "Geldautomat"
+        },
+        {
+            "type": "java",
+            "name": "Launch ParkingApp",
+            "request": "launch",
+            "mainClass": "system.ParkingApp",
+            "projectName": "ParkingApp"
+        },
+        {
+            "type": "java",
+            "name": "Launch System",
+            "request": "launch",
+            "mainClass": "system.System",
+            "projectName": "System"
+        },
+        {
+            "type": "java",
+            "name": "Launch TicTacToe",
+            "request": "launch",
+            "mainClass": "com.hoodgroup.tictactoe.TicTacToe",
+            "encoding": "windows-1252",
+            "projectName": "TicTacToe"
+        }
+    ]
+}
