@@ -3,7 +3,7 @@ Feature: example feature
 
   Scenario: withdraw pre-configured amount
     Given "Hermann Reich" has been authenticated
-    And the balance is 800€
-    When the 100€ button has been pressed
-    Then the system should dispense 100€ 
-    And the balance should be 700€
+    And the balance is 800â‚¬
+    When the 100â‚¬ button has been pressed
+    Then the system should dispense 100â‚¬ 
+    And the balance should be 700â‚¬
