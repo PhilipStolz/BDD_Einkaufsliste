@@ -4,7 +4,7 @@ public class BankkundenGUI extends GUInterface implements SchnittstelleZumBankku
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final String WAEHLE_AUSGABEBETRAG = "Wähle Ausgabebetrag";	
+	private static final String WAEHLE_AUSGABEBETRAG = "WÃ¤hle Ausgabebetrag";	
 	
 	private SchnittstelleVomBankkunden geldautomat;
 
