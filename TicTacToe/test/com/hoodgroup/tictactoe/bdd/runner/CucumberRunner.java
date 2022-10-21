@@ -2,7 +2,7 @@
  * File: CucumberRunner.java
  * Creation Date: May 26, 2022
  *
- * Copyright © 2022 by HOOD GmbH – all rights reserved 
+ * Copyright Â© 2022 by HOOD GmbH â€“ all rights reserved 
  */
 package com.hoodgroup.tictactoe.bdd.runner;
 

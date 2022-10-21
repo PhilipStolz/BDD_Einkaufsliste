@@ -22,8 +22,8 @@ public class parkplatz_verwalten_steps {
 	}
 
 
-	@When("Parkplatzbestizer legt den Parkplatz mit der Id {int} in der {string} für {int} €\\/h")
-	public void parkplatzbestizer_legt_den_parkplatz_mit_der_id_in_der_für_€_h(Integer id, String adresse, Integer preis) {
+	@When("Parkplatzbestizer legt den Parkplatz mit der Id {int} in der {string} fÃ¼r {int} â‚¬\\/h")
+	public void parkplatzbestizer_legt_den_parkplatz_mit_der_id_in_der_fÃ¼r_â‚¬_h(Integer id, String adresse, Integer preis) {
 		parkplatz.setAdresse(adresse);
 		parkplatz.setId(id);
 		parkplatz.setPreis(preis);
@@ -31,8 +31,8 @@ public class parkplatz_verwalten_steps {
 		liste.add(parkplatz);
 		besitzer.setParkplaetze(liste);
 	}
-	@Then("Parkplatz mit der Id {int} in der Übersicht vorhanden")
-	public void parkplatz_mit_der_id_in_der_übersicht_vorhanden(Integer int1) {
+	@Then("Parkplatz mit der Id {int} in der Ãœbersicht vorhanden")
+	public void parkplatz_mit_der_id_in_der_Ã¼bersicht_vorhanden(Integer int1) {
 	    assertTrue(besitzer.getParkplaetze().contains(parkplatz));
 	}
 
