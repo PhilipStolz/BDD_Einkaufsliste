@@ -1,12 +1,16 @@
 package system;
 
+import system.outsideinteraction.BankkundenGUI;
+import system.outsideinteraction.BanksystemGUI;
+
 // Erste Änderung
 
-public class System {
+public class EinkaufsApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		EinkaufsApp einkaufsApp = new EinkaufsApp();
+		   
+		einkaufsApp.setKonsument(new KonsumentGUI(einkaufsApp));
 	}
 
 }
