@@ -45,6 +45,26 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 		this.einkaufsliste = einkaufsliste;
 	}
 	
+	@Given("folgende Einkaufsliste:")
+	public void folgende_einkaufsliste(io.cucumber.datatable.DataTable dataTable) {
+		int listLength = dataTable.height();
+		for(int idx = 0; idx < listLength; idx++) {
+		    String posten = dataTable.cell(idx, 0);
+		    app.schreibeInEinkaufsliste(posten);
+		}
+	}
+	
+	@Then("sollte die Einkaufsliste folgende Einträge in beliebiger Reihenfolge enthalten:")
+	public void sollte_die_einkaufsliste_folgende_einträge_in_beliebiger_reihenfolge_enthalten(io.cucumber.datatable.DataTable dataTable) {
+		int listLength = dataTable.height();
+		for(int idx = 0; idx < listLength; idx++) {
+		    String posten = dataTable.cell(idx, 0);
+		    assertTrue(einkaufsliste.contains(posten));
+		}
+	}
+
+
+	
 	
 }
 
