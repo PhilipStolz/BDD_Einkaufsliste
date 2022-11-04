@@ -1,16 +1,46 @@
 package system;
 
-import system.outsideinteraction.BankkundenGUI;
-import system.outsideinteraction.BanksystemGUI;
+import java.util.Collection;
+import java.util.LinkedList;
+
+import system.outsideinteraction.KonsumentGUI;
+import system.outsideinteraction.SchnittstelleVomKonsument;
+import system.outsideinteraction.SchnittstelleZumKonsument;
 
 // Erste Änderung
 
-public class EinkaufsApp {
+public class EinkaufsApp implements SchnittstelleVomKonsument {
+
+	private SchnittstelleZumKonsument konsument;
+	
+	public EinkaufsApp() {
+		
+	}
+	
+	public EinkaufsApp(SchnittstelleZumKonsument konsument) {
+		this.konsument = konsument;
+	}
 
 	public static void main(String[] args) {
-		EinkaufsApp einkaufsApp = new EinkaufsApp();
-		   
+		EinkaufsApp einkaufsApp = new EinkaufsApp(); 
 		einkaufsApp.setKonsument(new KonsumentGUI(einkaufsApp));
+	}
+
+	private void setKonsument(SchnittstelleZumKonsument konsument) {
+		this.konsument = konsument;
+	}
+
+	@Override
+	public void schreibeInEinkaufsliste(String posten) {
+		Collection<String> einkaufsliste = new LinkedList<>();
+		einkaufsliste.add(posten);
+		konsument.zeigeEinkaufsliste(einkaufsliste);
+	}
+
+	@Override
+	public void zeigeEinkaufsliste() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
