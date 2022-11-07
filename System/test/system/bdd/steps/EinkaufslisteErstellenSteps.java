@@ -1,5 +1,6 @@
 package system.bdd.steps;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -32,9 +33,8 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 		app.schreibeInEinkaufsliste(string);
 	}
 	
-	@Then("sollte die Einkaufsliste den Eintrag {string} enthalten.")
+	@Then("die Einkaufsliste sollte den Eintrag {string} enthalten.")
 	public void sollte_die_einkaufsliste_den_eintrag_enthalten(String string) {
-		app.zeigeEinkaufsliste();
 		assertNotNull(einkaufsliste);
 		assertTrue(einkaufsliste.contains(string));
 	}
@@ -54,17 +54,28 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 		}
 	}
 	
-	@Then("sollte die Einkaufsliste folgende Einträge in beliebiger Reihenfolge enthalten:")
+	@Then("die Einkaufsliste sollte genau folgende Einträge in beliebiger Reihenfolge enthalten:")
 	public void sollte_die_einkaufsliste_folgende_einträge_in_beliebiger_reihenfolge_enthalten(io.cucumber.datatable.DataTable dataTable) {
 		int listLength = dataTable.height();
 		for(int idx = 0; idx < listLength; idx++) {
 		    String posten = dataTable.cell(idx, 0);
 		    assertTrue(einkaufsliste.contains(posten));
 		}
+		
+		assertEquals(listLength, einkaufsliste.size());
+	}
+
+	@Then("die Einkaufsliste sollte {int} Posten enthalten")
+	public void sollte_die_einkaufsliste_posten_enthalten(Integer anzahlPosten) {
+		assertEquals((long) anzahlPosten, (long) (einkaufsliste.size()));
+	}
+	
+	@When("ich den Eintrag {string} aus der Einkaufsliste entferne")
+	public void ich_den_eintrag_aus_der_einkaufsliste_entferne(String posten) {
+	    app.entferneAusEinkaufsliste(posten);
 	}
 
 
-	
 	
 }
 

@@ -1,7 +1,7 @@
 package system;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
 
 import system.outsideinteraction.KonsumentGUI;
 import system.outsideinteraction.SchnittstelleVomKonsument;
@@ -12,6 +12,8 @@ import system.outsideinteraction.SchnittstelleZumKonsument;
 public class EinkaufsApp implements SchnittstelleVomKonsument {
 
 	private SchnittstelleZumKonsument konsument;
+	
+	private Collection<String> einkaufsliste = new HashSet<String>();
 	
 	public EinkaufsApp() {
 		
@@ -32,15 +34,13 @@ public class EinkaufsApp implements SchnittstelleVomKonsument {
 
 	@Override
 	public void schreibeInEinkaufsliste(String posten) {
-		Collection<String> einkaufsliste = new LinkedList<>();
 		einkaufsliste.add(posten);
 		konsument.zeigeEinkaufsliste(einkaufsliste);
 	}
 
 	@Override
-	public void zeigeEinkaufsliste() {
-		// TODO Auto-generated method stub
-		
+	public void entferneAusEinkaufsliste(String posten) {
+		einkaufsliste.remove(posten);
+		konsument.zeigeEinkaufsliste(einkaufsliste);
 	}
-
 }

@@ -4,6 +4,5 @@ public interface SchnittstelleVomKonsument {
 
 	void schreibeInEinkaufsliste(String posten);
 
-	void zeigeEinkaufsliste();
-
+	void entferneAusEinkaufsliste(String posten);
 }
