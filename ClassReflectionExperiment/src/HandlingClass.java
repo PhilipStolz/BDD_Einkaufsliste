@@ -18,13 +18,12 @@ public class HandlingClass {
 					if(parType.equals(String.class)) {
 						parameters[idx] = "Hello";
 					}
-					else if(parType.equals(Integer.class)) {
-					    if(parType.isPrimitive()) {
-					    	parameters[idx] = Integer.valueOf(4).int;
-					    }
-					    else {
+					else if(parType.equals(int.class)) {
+						int defaultInt = 4;
+						parameters[idx] = defaultInt;
+					}
+					else if(parType.equals(Integer.class)){
 					    	parameters[idx] = Integer.valueOf(4);					    	
-					    }
 					}
 					else
 						parameters[idx] = null;
