@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 
 import javax.swing.Box;
@@ -69,7 +72,7 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 		    okButton.setActionCommand("OK");
 		    okButton.addActionListener(this);
 		    
-		}
+		}		
 		
 		private void prompt(String msg) {
 			msgLabel.setText(msg);
@@ -151,8 +154,31 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 
 	} 
 	
+	private class CallbackRecord {
+		
+		private Object object;
+		private Method method;
+		private String[] parameterLabels;
+		
+		public CallbackRecord(Object object, Method method, String ...parameterLabels) {
+			this.object = object;
+			this.method = method;
+			this.parameterLabels = parameterLabels;
+		}
 
-	
+		public Object getObject() {
+			return object;
+		}
+
+		public Method getMethod() {
+			return method;
+		}
+
+		public String[] getParameterLabels() {
+			return parameterLabels;
+		}
+	}
+		
 	private static final long serialVersionUID = 1L;
 	public GUInterface(String name) {
 		this.setTitle(name);
@@ -266,6 +292,28 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 		}
 	}
 	
+	
+	private static Method getMethod(Object obj, String methodName) {
+		Method[] methods = obj.getClass().getDeclaredMethods();
+		for(Method method : methods) {
+			if(method.getName().equals(methodName)) {
+				return method;
+			}
+		}
+		return null;
+	}
+	
+	protected void addActorAction(String actorAction, Object callbackObject, String callbackMethodName, String ...parameterLabels ) {
+		Method callbackMethod = getMethod(callbackObject, callbackMethodName);
+		if(callbackMethod != null) {
+			CallbackRecord callbackRecord = new CallbackRecord(callbackObject,
+					                                           callbackMethod, 
+					                                           parameterLabels);
+			callbackMap.put(actorAction, callbackRecord);
+			addActorAction(actorAction);
+		}
+	}
+	
 	protected void removeActorAction(String actorAction) {
 		if(actorActionButtons.containsKey(actorAction)) {
 			JButton actorActionButton = actorActionButtons.get(actorAction);
@@ -283,12 +331,79 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 			actorActionTriggered(actionCommand);
 	}
 	
-	abstract void actorActionTriggered(String actorAction);
+	void actorActionTriggered(String actorAction) {
+		CallbackRecord callbackRecord = callbackMap.get(actorAction);
+		if(callbackRecord != null)
+			performCallback(callbackRecord);
+	}
+
+
+
+	private void performCallback(CallbackRecord callbackRecord) {
+		Object[] parameters = gatherParameters(callbackRecord.getMethod(), callbackRecord.getParameterLabels());
+		if(parameters != null) {
+			try {
+				callbackRecord.getMethod().invoke(callbackRecord.getObject(), parameters);
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+
+
+	private Object[] gatherParameters(Method method, String[] parameterLabels) {
+        Parameter[] parameterDefs = method.getParameters();
+		Object[] parameters = new Object[parameterDefs.length];
+
+		
+		int idx = 0;
+		for(Parameter parameterDef : parameterDefs) {
+			Class<?> parameterType = parameterDef.getType();
+			String parameterLabel = parameterDef.getName();
+			Object parameterValue = null;
+			
+			if(idx < parameterLabels.length)
+				parameterLabel = parameterLabels[idx];
+			
+			if(parameterType.equals(String.class)) {
+				parameterValue = readString(parameterLabel);
+			}
+			else if(parameterType.equals(Integer.class)) {
+				parameterValue = readInteger(parameterLabel);
+			}
+			else if(parameterType.equals(int.class)) {
+				Integer intVal = readInteger(parameterLabel);
+				if(intVal != null)
+					parameterValue = intVal.intValue();
+			}
+			else if(parameterType.equals(Double.class)) {
+				parameterValue = readDouble(parameterLabel);				
+			}
+			else if(parameterType.equals(double.class)) {
+				Double doubleVal = readDouble(parameterLabel);
+				if(doubleVal != null)
+					parameterValue = doubleVal.doubleValue();				
+			}
+			
+			if(parameterValue == null)
+				return null;
+			
+			parameters[idx] = parameterValue;
+
+			idx++;
+		}
+		
+		return parameters;
+	}
+
+
 
 	private JTextArea textArea    = null;
 	private JPanel    buttonPanel = null;
 	private UserInputDlg userInputDlg = null;
-	private HashMap<String, JButton> actorActionButtons = new HashMap<String, JButton>();
+	private HashMap<String, JButton> actorActionButtons = new HashMap<>();
+	private HashMap<String, CallbackRecord> callbackMap = new HashMap<>();
 	private static final int    BORDER_WIDTH        = 10;
 	private static final int    VERTICAL_GAP        = 10;	
 	private static final int    BUTTON_PANEL_HEIGHT = 160;
@@ -296,5 +411,4 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 	private static final int    TEXTAREA_LINES      = 20;
 	private static final int    TEXTAREA_COLUMNS    = 80;	
 	private static final String TEXTAREA_LABEL      = "Incoming System Actions";
-	
 }
