@@ -24,7 +24,7 @@ public class KonsumentGUI extends GUInterface implements SchnittstelleZumKonsume
 		if(actorAction.equals(SCHREIBE_IN_EINKAUFSLISTE)) {
 			String eintrag = readString(EINTRAG);
 			if(eintrag != null)
-				einkaufsApp.schreibeInEinkaufsliste(eintrag);;
+				einkaufsApp.schreibeInEinkaufsliste(eintrag);
 		}
 		else if(actorAction.equals(ENTFERNE_AUS_EINKAUFSLISTE)) {
 			String eintrag = readString(EINTRAG);

@@ -75,7 +75,6 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 	    app.entferneAusEinkaufsliste(posten);
 	}
 
-
 	
 }
 
