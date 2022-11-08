@@ -314,6 +314,13 @@ abstract public class GUInterface extends JDialog implements ActionListener {
 		}
 	}
 	
+	protected void addActorActions(Class<?> interfaceFromActor, Object objectImplementingInterface) {
+		Method[] methods = interfaceFromActor.getMethods();
+		for(Method method : methods) {
+			addActorAction(method.getName(), objectImplementingInterface, method.getName());
+		}
+	}
+		
 	protected void removeActorAction(String actorAction) {
 		if(actorActionButtons.containsKey(actorAction)) {
 			JButton actorActionButton = actorActionButtons.get(actorAction);

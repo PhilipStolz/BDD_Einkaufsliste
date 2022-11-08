@@ -43,4 +43,8 @@ public class EinkaufsApp implements SchnittstelleVomKonsument {
 		einkaufsliste.remove(posten);
 		konsument.zeigeEinkaufsliste(einkaufsliste);
 	}
+	
+	public void hallo() {
+		
+	}
 }
