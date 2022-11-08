@@ -1,6 +1,6 @@
 package system.outsideinteraction;
 
-import java.util.Collection;
+import java.util.Map;
 
 public class KonsumentGUI extends GUInterface implements SchnittstelleZumKonsument {
 
@@ -12,7 +12,7 @@ public class KonsumentGUI extends GUInterface implements SchnittstelleZumKonsume
 	}
 	
 	@Override
-	public void zeigeEinkaufsliste(Collection<String> einkaufsliste) {
+	public void zeigeEinkaufsliste(Map<String, String> einkaufsliste) {
 		displayIncomingSystemAction("Einkaufliste: " + einkaufsliste.toString());
 	}		
 }

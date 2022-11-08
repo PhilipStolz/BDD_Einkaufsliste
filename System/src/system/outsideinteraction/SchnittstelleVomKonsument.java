@@ -2,8 +2,12 @@ package system.outsideinteraction;
 
 public interface SchnittstelleVomKonsument {
 
-	void schreibeInEinkaufsliste(String posten);
+	void schreibeInEinkaufsliste(String eintrag);
 
-	void entferneAusEinkaufsliste(String posten);
+	void entferneAusEinkaufsliste(String eintrag);
+
+	void leereEinkaufsliste();
+
+	void ergaenzeUmKommentar(String eintrag, String kommentar);
 
 }

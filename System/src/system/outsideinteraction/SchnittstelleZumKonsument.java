@@ -1,7 +1,7 @@
 package system.outsideinteraction;
 
-import java.util.Collection;
+import java.util.Map;
 
 public interface SchnittstelleZumKonsument {
-	void zeigeEinkaufsliste(Collection<String> einkaufsliste);
+	void zeigeEinkaufsliste(Map<String, String> einkaufsliste);
 }

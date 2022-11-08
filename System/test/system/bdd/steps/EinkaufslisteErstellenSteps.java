@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.Map;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,7 +17,7 @@ import system.outsideinteraction.SchnittstelleZumKonsument;
 public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 
 	private SchnittstelleVomKonsument app;	
-	private Collection<String> einkaufsliste;
+	private Map<String, String> einkaufsliste;
 	
 	public EinkaufslisteErstellenSteps() {
 		app = new EinkaufsApp(this);
@@ -29,19 +30,19 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 	}
 	
 	@When("ich schreibe {string} in die Einkaufsliste")
-	public void ich_schreibe_in_die_einkaufsliste(String string) {
-		app.schreibeInEinkaufsliste(string);
+	public void ich_schreibe_in_die_einkaufsliste(String eintrag) {
+		app.schreibeInEinkaufsliste(eintrag);
 	}
 	
 	@Then("die Einkaufsliste sollte den Eintrag {string} enthalten.")
-	public void sollte_die_einkaufsliste_den_eintrag_enthalten(String string) {
+	public void sollte_die_einkaufsliste_den_eintrag_enthalten(String eintrag) {
 		assertNotNull(einkaufsliste);
-		assertTrue(einkaufsliste.contains(string));
+		assertTrue(einkaufsliste.containsKey(eintrag));
 	}
 
 
 	@Override
-	public void zeigeEinkaufsliste(Collection<String> einkaufsliste) {
+	public void zeigeEinkaufsliste(Map<String, String> einkaufsliste) {
 		this.einkaufsliste = einkaufsliste;
 	}
 	
@@ -49,33 +50,52 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 	public void folgende_einkaufsliste(io.cucumber.datatable.DataTable dataTable) {
 		int listLength = dataTable.height();
 		for(int idx = 0; idx < listLength; idx++) {
-		    String posten = dataTable.cell(idx, 0);
-		    app.schreibeInEinkaufsliste(posten);
+		    String eintrag = dataTable.cell(idx, 0);
+		    app.schreibeInEinkaufsliste(eintrag);
 		}
 	}
 	
 	@Then("die Einkaufsliste sollte genau folgende Einträge in beliebiger Reihenfolge enthalten:")
 	public void sollte_die_einkaufsliste_folgende_einträge_in_beliebiger_reihenfolge_enthalten(io.cucumber.datatable.DataTable dataTable) {
 		int listLength = dataTable.height();
+		int listWidth  = dataTable.width();
 		for(int idx = 0; idx < listLength; idx++) {
-		    String posten = dataTable.cell(idx, 0);
-		    assertTrue(einkaufsliste.contains(posten));
+		    String eintrag = dataTable.cell(idx, 0);
+		    assertTrue(einkaufsliste.containsKey(eintrag));
+		    
+		    if(listWidth > 1) {
+		    	String kommentar = dataTable.cell(idx, 1);
+		    	assertEquals(kommentar, einkaufsliste.get(eintrag));
+		    }
 		}
 		
 		assertEquals(listLength, einkaufsliste.size());
 	}
 
-	@Then("die Einkaufsliste sollte {int} Posten enthalten")
-	public void sollte_die_einkaufsliste_posten_enthalten(Integer anzahlPosten) {
-		assertEquals((long) anzahlPosten, (long) (einkaufsliste.size()));
+	@Then("die Einkaufsliste sollte {int} Einträge enthalten")
+	public void sollte_die_einkaufsliste_eintraege_enthalten(Integer anzahlEintraege) {
+		assertEquals((long) anzahlEintraege, (long) (einkaufsliste.size()));
 	}
 	
 	@When("ich den Eintrag {string} aus der Einkaufsliste entferne")
-	public void ich_den_eintrag_aus_der_einkaufsliste_entferne(String posten) {
-	    app.entferneAusEinkaufsliste(posten);
+	public void ich_den_eintrag_aus_der_einkaufsliste_entferne(String eintrag) {
+	    app.entferneAusEinkaufsliste(eintrag);
 	}
 
+	@When("ich die Einkaufsliste leere")
+	public void ich_die_einkaufsliste_leere() {
+		app.leereEinkaufsliste();
+	}
+
+	@When("ich den Eintrag {string} um den Kommentar {string} ergänze")
+	public void ich_den_eintrag_um_den_kommentar_ergänze(String eintrag, String kommentar) {
+	    app.ergaenzeUmKommentar(eintrag, kommentar);
+	}
+
+
 	
+
+
 }
 
 
