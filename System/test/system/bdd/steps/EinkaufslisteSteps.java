@@ -14,12 +14,12 @@ import system.EinkaufsApp;
 import system.outsideinteraction.SchnittstelleVomKonsument;
 import system.outsideinteraction.SchnittstelleZumKonsument;
 
-public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
+public class EinkaufslisteSteps implements SchnittstelleZumKonsument {
 
 	private SchnittstelleVomKonsument app;	
 	private Map<String, String> einkaufsliste;
 	
-	public EinkaufslisteErstellenSteps() {
+	public EinkaufslisteSteps() {
 		app = new EinkaufsApp(this);
 	}
 
@@ -72,6 +72,13 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 		assertEquals(listLength, einkaufsliste.size());
 	}
 
+	@When("ich den Eintrag {string} erledige")
+	public void ich_den_eintrag_erledige(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+		// ANSATZ: Erledigen ist zunächst einfach Löschen.
+	    throw new io.cucumber.java.PendingException();
+	}
+	
 	@Then("die Einkaufsliste sollte {int} Einträge enthalten")
 	public void sollte_die_einkaufsliste_eintraege_enthalten(Integer anzahlEintraege) {
 		assertEquals((long) anzahlEintraege, (long) (einkaufsliste.size()));
@@ -91,10 +98,6 @@ public class EinkaufslisteErstellenSteps implements SchnittstelleZumKonsument {
 	public void ich_den_eintrag_um_den_kommentar_ergänze(String eintrag, String kommentar) {
 	    app.ergaenzeUmKommentar(eintrag, kommentar);
 	}
-
-
-	
-
 
 }
 

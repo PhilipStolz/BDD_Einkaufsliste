@@ -5,7 +5,9 @@ left to right direction
 
 rectangle "System" {
     "UC01\nEinkaufsliste erstellen" as (uc01)
+    "UC02\nEinkaufswagen füllen" as (uc02)
 }
 
 act01 -- (uc01)
+act01 -- (uc02)
 @enduml
