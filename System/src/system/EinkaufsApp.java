@@ -58,4 +58,9 @@ public class EinkaufsApp implements SchnittstelleVomKonsument {
 		}
 		konsument.zeigeEinkaufsliste(einkaufsliste);		
 	}
+
+	@Override
+	public void erledigeEintrag(String eintrag) {
+		entferneAusEinkaufsliste(eintrag);
+	}
 }

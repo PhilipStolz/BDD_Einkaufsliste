@@ -73,10 +73,8 @@ public class EinkaufslisteSteps implements SchnittstelleZumKonsument {
 	}
 
 	@When("ich den Eintrag {string} erledige")
-	public void ich_den_eintrag_erledige(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-		// ANSATZ: Erledigen ist zunächst einfach Löschen.
-	    throw new io.cucumber.java.PendingException();
+	public void ich_den_eintrag_erledige(String eintrag) {
+		app.erledigeEintrag(eintrag);
 	}
 	
 	@Then("die Einkaufsliste sollte {int} Einträge enthalten")

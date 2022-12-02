@@ -62,3 +62,13 @@ Feature: Einkaufsliste erstellen
     Given eine leere Einkaufsliste
     When ich den Eintrag "Tomaten" um den Kommentar "vom Biohof" ergänze
     Then die Einkaufsliste sollte 0 Einträge enthalten
+    
+  Scenario: Eintrag erledigen
+	  Given folgende Einkaufsliste: 
+	    | Quark |
+	    | Milch |
+	    | Öl    |
+	  When ich den Eintrag "Quark" erledige
+	  Then die Einkaufsliste sollte genau folgende Einträge in beliebiger Reihenfolge enthalten:
+	    | Milch  |
+	    | Öl     |

@@ -10,4 +10,6 @@ public interface SchnittstelleVomKonsument {
 
 	void ergaenzeUmKommentar(String eintrag, String kommentar);
 
+	void erledigeEintrag(String eintrag);
+
 }
