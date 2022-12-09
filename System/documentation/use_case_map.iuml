@@ -5,9 +5,8 @@ left to right direction
 
 rectangle "Einkaus App" {
     "UC01\nEinkaufsliste erstellen" as (uc01)
-    "UC02\nEinkaufsliste im\nSupermarkt abarbeiten" as (uc02)
 }
 
 act01 -- (uc01)
-act01 -- (uc02)
+
 @enduml

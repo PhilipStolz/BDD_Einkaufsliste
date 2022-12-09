@@ -1,6 +1,5 @@
 package system;
 
-import java.util.HashMap;
 import system.outsideinteraction.KonsumentGUI;
 import system.outsideinteraction.SchnittstelleVomKonsument;
 import system.outsideinteraction.SchnittstelleZumKonsument;
@@ -9,9 +8,8 @@ import system.outsideinteraction.SchnittstelleZumKonsument;
 
 public class EinkaufsApp implements SchnittstelleVomKonsument {
 
+	@SuppressWarnings("unused")
 	private SchnittstelleZumKonsument konsument;
-	
-	private HashMap<String,String> einkaufsliste = new HashMap<>();
 	
 	public EinkaufsApp() {
 		
@@ -30,34 +28,4 @@ public class EinkaufsApp implements SchnittstelleVomKonsument {
 		this.konsument = konsument;
 	}
 
-	@Override
-	public void schreibeInEinkaufsliste(String eintrag) {
-		einkaufsliste.put(eintrag, null);
-		konsument.zeigeEinkaufsliste(einkaufsliste);
-	}
-
-	@Override
-	public void entferneAusEinkaufsliste(String eintrag) {
-		einkaufsliste.remove(eintrag);
-		konsument.zeigeEinkaufsliste(einkaufsliste);
-	}
-
-	@Override
-	public void leereEinkaufsliste() {
-		einkaufsliste.clear();
-		konsument.zeigeEinkaufsliste(einkaufsliste);
-	}
-
-	@Override
-	public void ergaenzeUmKommentar(String eintrag, String kommentar) {
-		if(einkaufsliste.containsKey(eintrag)) {
-			einkaufsliste.put(eintrag, kommentar);
-		}
-		konsument.zeigeEinkaufsliste(einkaufsliste);		
-	}
-
-	@Override
-	public void erledigeEintrag(String eintrag) {
-		entferneAusEinkaufsliste(eintrag);
-	}
 }
