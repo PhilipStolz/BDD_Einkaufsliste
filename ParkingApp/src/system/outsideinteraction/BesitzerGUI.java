@@ -5,6 +5,7 @@ public class BesitzerGUI extends GUInterface {
 	private static final long serialVersionUID = 1L;
 	
 	
+	@SuppressWarnings("unused")
 	private SchnittstelleZumFahrer parkingApp;
 	
 	public BesitzerGUI(SchnittstelleZumFahrer parkingApp) {

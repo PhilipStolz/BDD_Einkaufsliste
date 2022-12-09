@@ -4,17 +4,17 @@ import java.lang.reflect.Method;
 public class HandlingClass {
 
 	public void handle(Object object, String methodName) {
-		Class theClass = object.getClass();
+		Class<? extends Object> theClass = object.getClass();
 		Method[] methods = theClass.getMethods();
 
 		for(Method method : methods) {
 			String mName = method.getName();
 			System.out.println(mName);
 			if(mName.equals(methodName)) {
-				Class[] parameterTypes = method.getParameterTypes();
+				Class<? extends Object>[] parameterTypes = method.getParameterTypes();
 				Object[] parameters = new Object[parameterTypes.length];
 				int idx = 0;
-				for(Class parType : parameterTypes) {
+				for(Class<? extends Object> parType : parameterTypes) {
 					if(parType.equals(String.class)) {
 						parameters[idx] = "Hello";
 					}
