@@ -1,5 +1,6 @@
 package system.bdd.steps;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -39,12 +40,23 @@ public class EinkaufslisteSteps implements SchnittstelleZumKonsument {
 
 	@Given("folgende Einkaufsliste:")
 	public void folgende_einkaufsliste(io.cucumber.datatable.DataTable vorgegebeneEinkaufsliste) {
-	    throw new io.cucumber.java.PendingException();
+		int listLength = vorgegebeneEinkaufsliste.height();
+		for(int idx = 0; idx < listLength; idx++) {
+		    String eintrag = vorgegebeneEinkaufsliste.cell(idx, 0);
+		    app.schreibeInEinkaufsliste(eintrag);
+		}
 	}
 	
 	@Then("die Einkaufsliste sollte genau folgende Einträge in beliebiger Reihenfolge enthalten:")
 	public void die_einkaufsliste_sollte_genau_folgende_einträge_in_beliebiger_reihenfolge_enthalten(io.cucumber.datatable.DataTable vorgegebeneEinkaufsliste) {
-	    throw new io.cucumber.java.PendingException();
+		int listLength = vorgegebeneEinkaufsliste.height();
+
+		for(int idx = 0; idx < listLength; idx++) {
+		    String eintrag = vorgegebeneEinkaufsliste.cell(idx, 0);
+		    assertTrue(einkaufsliste.contains(eintrag));
+		}
+		
+		assertEquals(listLength, einkaufsliste.size());
 	}
 
 
